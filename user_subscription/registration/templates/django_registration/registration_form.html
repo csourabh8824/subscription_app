@@ -1,0 +1,20 @@
+{% extends 'user_subscription/base.html' %}
+{% block content %}
+    <form action="" method="post" novalidate>
+        {% csrf_token %}
+        {% for field in form %}
+            <div class="fieldWrapper">                
+                {{field.label_tag}}  {{field}} <br><br>
+                {% if field.errors %}
+                    {{field.errors}}
+                {% endif %}                
+            </div>   
+         {% endfor %}
+        <input type="submit" value="Register">
+        <small style="color:blue">Already have an account ?</small>
+        <a href="/accounts/login/">Login</a>
+    </form>
+
+
+{% endblock %}
+    
