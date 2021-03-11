@@ -20,7 +20,16 @@ urlpatterns = [
         registration_views.ProfilePage.as_view(),
         name="profile",
     ),
-    path("accounts/login/profile/loggedout/", registration_views.LogoutView.as_view()),
+    path(
+        "accounts/login/profile/loggedout/",
+        registration_views.LogoutView.as_view(),
+        name="logout",
+    ),
+    path(
+        "myplan/",
+        registration_views.UserSubscriptionPlan.as_view(),
+        name="mysubscriptionplan",
+    ),
     path("create-sub", registration_views.CreateSub.as_view(), name="createsub"),
     path("complete", registration_views.Complete.as_view(), name="complete"),
     path("cancel", registration_views.Cancel.as_view(), name="cancel"),

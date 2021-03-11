@@ -1,22 +1,22 @@
 {% extends "user_subscription/base.html" %}
 
 {% block paymenthead %}
-  <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>Django + Stripe Checkout</title>
-  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@0.8.2/css/bulma.min.css">
-  <script defer src="https://use.fontawesome.com/releases/v5.3.1/js/all.js"></script>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<title>Django + Stripe Checkout</title>
+	<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@0.8.2/css/bulma.min.css">
+	<script defer src="https://use.fontawesome.com/releases/v5.3.1/js/all.js"></script>
 {% endblock paymenthead %}
 
 {% block content %}
-  <section class="section">
-    <div class="container">
-      <p style="color:purple;">Your payment succeded {{user.username}}.</p>
-      <p style="color:purple;"> Your trial period will end on {{user.subscription.current_period_end}}</p><br>
-      {% if user.customer %}
-        <p style="font-weight: bold;">You can cancel your current subscription by clicking on a button <a class="btn btn-danger text-light btn-sm" href="/cancel">Cancel Subscription</a></p>
-      {% endif %}
-       
-    </div>
-  </section>
+	<section class="section">
+	<div class="container">
+		<p style="color:purple;">Your payment succeded {{user.username}}.</p>
+		<p style="color:purple;"> Your trial period will end on {{user.subscription.current_period_end}}</p><br>
+		{% if user.customer %}
+		<p style="font-weight: bold;">You can cancel your current subscription plan <a class="btn btn-danger text-light btn-sm" href="/cancel">Cancel Subscription</a></p>
+		{% endif %}
+		
+	</div>
+	</section>
 {% endblock %}

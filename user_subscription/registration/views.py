@@ -46,7 +46,12 @@ class LogoutView(View):
 
 @method_decorator(login_required, name="dispatch")
 class CreateSub(View):
+    """
+    This view is used for customer creation and subscription.
+    """
+
     def post(self, request):
+
         data = json.loads(request.body)
         payment_method = data["payment_method"]
         stripe.api_key = djstripe.settings.STRIPE_SECRET_KEY
@@ -87,6 +92,7 @@ class CreateSub(View):
             request.user.subscription = djstripe_subscription
             request.user.save()
             return JsonResponse(subscription)
+
         except Exception as e:
             return JsonResponse({"error": (e.args[0])}, status=403)
         else:
@@ -95,12 +101,23 @@ class CreateSub(View):
 
 class Complete(View):
     """
-    this view render the template if subscription get completed.
+    This view render the template if subscription get completed.
     """
 
     def get(self, request):
 
         return render(request, "subscription/subscriptioncomplete.html")
+
+
+@method_decorator(login_required, name="dispatch")
+class UserSubscriptionPlan(View):
+    """
+    This view is to display the plan that user has selected
+    """
+
+    def get(self, request):
+
+        return render(request, "subscription/mysubscriptionplan.html")
 
 
 class Cancel(View):
@@ -112,12 +129,11 @@ class Cancel(View):
 
         if request.user.is_authenticated:
             sub_id = request.user.subscription.id
-
             stripe.api_key = djstripe.settings.STRIPE_SECRET_KEY
 
             try:
                 stripe.Subscription.delete(sub_id)
             except Exception as e:
-                return JsonResponse({"error": (e.args[0])}, status=403)
+                return render(request, "subscription/nosubscriptionplans.html")
 
             return render(request, "subscription/subscriptioncancel.html")

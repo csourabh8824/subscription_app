@@ -33,9 +33,16 @@
                         <a class="nav-link" href="{% url 'profile' %}">Stripe</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="loggedout/">Logout</a>
+                        <a class="nav-link" href="{% url 'logout' %}">Logout</a>
                     </li>
-                    <li class="nav-link"><a class="active" href="#">Welcome {{user.username}}</a></li><p>
+                    <li class="nav-link">
+                        Welcome {{user.username}}
+                    </li>
+                    <li class="nav-link">
+                        {% if user.subscription.id > "0" %}
+                            <a href="{% url 'mysubscriptionplan' %}">My plan</a>
+                        {% endif %}
+                    </li>
                 {% else %}
                     <li class="nav-item">
                         <a class="nav-link" href="/accounts/register/">Register</a>
