@@ -5,7 +5,6 @@ from registration import views as registration_views
 
 
 urlpatterns = [
-    # Other URL patterns ...
     path(
         "accounts/register/",
         RegistrationView.as_view(

@@ -14,8 +14,6 @@ from djstripe.models import Product
 
 from .models import CustomUser
 
-# Create your views here.
-
 
 @method_decorator(login_required, name="dispatch")
 class ProfilePage(View):
