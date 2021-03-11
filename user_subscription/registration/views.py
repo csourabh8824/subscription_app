@@ -88,7 +88,7 @@ class CreateSub(View):
             djstripe_subscription = djstripe.models.Subscription.sync_from_stripe_data(
                 subscription
             )
-
+            request.user.active_subscription = True
             request.user.subscription = djstripe_subscription
             request.user.save()
             return JsonResponse(subscription)
@@ -132,7 +132,9 @@ class Cancel(View):
             stripe.api_key = djstripe.settings.STRIPE_SECRET_KEY
 
             try:
+                request.user.active_subscription = False
                 stripe.Subscription.delete(sub_id)
+                request.user.save()
             except Exception as e:
                 return render(request, "subscription/nosubscriptionplans.html")
 

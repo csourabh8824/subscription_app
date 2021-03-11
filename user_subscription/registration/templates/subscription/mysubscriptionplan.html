@@ -10,5 +10,6 @@
 
 {% block content %}
 	<br>
-    <p style="font-weight: bold;">You can cancel your current subscription plan by clicking <a class="btn btn-danger text-light btn-sm" href="/cancel">Cancel Subscription</a></p>       
+	<h3 style="color:purple";>Currently you have "{{user.subscription.plan.product}}"</h3>
+    <p style="font-weight: bold;">You can cancel your current {{user.subscription.plan.product}} by clicking <a class="btn btn-danger text-light btn-sm" href="/cancel">Cancel Subscription</a></p>       
 {% endblock %}

@@ -29,18 +29,18 @@
         <div class="collapse navbar-collapse" id="collapsibleNavbar">
             <ul class="navbar-nav">
                 {% if user.is_authenticated %}
+                    <li class="nav-link">
+                        Welcome {{user.username}}
+                    </li>
                     <li class="nav-item">
                         <a class="nav-link" href="{% url 'profile' %}">Stripe</a>
                     </li>
                     <li class="nav-item">
                         <a class="nav-link" href="{% url 'logout' %}">Logout</a>
                     </li>
-                    <li class="nav-link">
-                        Welcome {{user.username}}
-                    </li>
-                    <li class="nav-link">
-                        {% if user.subscription.id > "0" %}
-                            <a href="{% url 'mysubscriptionplan' %}">My plan</a>
+                    <li class="nav-item">
+                        {% if user.active_subscription %}
+                            <a class="nav-link" href="{% url 'mysubscriptionplan' %}">My plan</a>
                         {% endif %}
                     </li>
                 {% else %}

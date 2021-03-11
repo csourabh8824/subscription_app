@@ -14,7 +14,7 @@
 		<p style="color:purple;">Your payment succeded {{user.username}}.</p>
 		<p style="color:purple;"> Your trial period will end on {{user.subscription.current_period_end}}</p><br>
 		{% if user.customer %}
-		<p style="font-weight: bold;">You can cancel your current subscription plan <a class="btn btn-danger text-light btn-sm" href="/cancel">Cancel Subscription</a></p>
+		<p style="font-weight: bold;">You can cancel your current {{user.subscription.plan.product}} <a class="btn btn-danger text-light btn-sm" href="/cancel">Cancel Subscription</a></p>
 		{% endif %}
 		
 	</div>
