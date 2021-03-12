@@ -8,12 +8,15 @@ User registration is managed by Django.Stripe is a payment infrastructure for th
 git clone https://github.com/csourabh8824/subscription_app.git
 ```
 
-## Create Virtual environment and install:
+## Create Virtual environment and install these requirements or use requirements.txt:
 ```
 Django==2.2
 django-registration==3.1.1
 mysqlclient==2.0.3
 stripe==2.56.0
+django-crispy-forms==1.11.1
+django-environ==0.4.5
+
 ```
 ## Stripe account
 1. Create account on stripe and then copy your publishable and secret key from Developers Api keys section.
