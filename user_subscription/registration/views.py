@@ -22,11 +22,15 @@ class ProfilePage(View):
     """
 
     def get(self, request, *args, **kwargs):
+        print(111111111111111, request.user.active_subscription)
+        if request.user.active_subscription:
+            return render(request, "subscription/subscriptioncomplete.html")
 
         context = {
             "products": Product.objects.all(),
             "publishable_key": settings.STRIPE_TEST_PUBLIC_KEY,
         }
+
         return render(request, "login/profile_page.html", context)
 
 
@@ -42,8 +46,8 @@ class LogoutView(View):
         return render(request, "logout/logout_page.html")
 
 
-@method_decorator(login_required, name="dispatch")
-class CreateSub(View):
+# @method_decorator(login_required, name="dispatch")
+class CreateSubscription(View):
     """
     This view is used for customer creation and subscription.
     """
@@ -118,7 +122,7 @@ class UserSubscriptionPlan(View):
         return render(request, "subscription/mysubscriptionplan.html")
 
 
-class Cancel(View):
+class CancelSubscription(View):
     """
     this view render the template if subscription get cancelled.
     """

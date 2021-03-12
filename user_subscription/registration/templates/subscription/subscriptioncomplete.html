@@ -11,11 +11,20 @@
 {% block content %}
 	<section class="section">
 	<div class="container">
-		<p style="color:purple;">Your payment succeded {{user.username}}.</p>
-		<p style="color:purple;"> Your trial period will end on {{user.subscription.current_period_end}}</p><br>
-		{% if user.customer %}
-		<p style="font-weight: bold;">You can cancel your current {{user.subscription.plan.product}} <a class="btn btn-danger text-light btn-sm" href="/cancel">Cancel Subscription</a></p>
-		{% endif %}		
+		
+	{% if user.customer %}
+		<br>
+		{% if user.active_subscription %}
+			<p style="color:purple;">Your payment succeded.</p>
+			<p style="color:purple;"> Your trial period will end on {{user.subscription.current_period_end}}</p><br>
+			<h3 style="color:purple";>Currently you have "{{user.subscription.plan.product}}"</h3>
+			<p style="font-weight: bold;">You can cancel your current {{user.subscription.plan.product}} plan by clicking <a class="btn btn-danger text-light btn-sm" href="/cancel">Cancel Subscription</a></p>
+		{% else %}
+		<h3 style="color:purple";>Currently you don't have any plans</h3>
+		<h4>To get plan click<a href="{% url 'profile' %}">here</a></h4>
+		{% endif %}
+	
+	{% endif %}		
 	</div>
 	</section>
 {% endblock %}

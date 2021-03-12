@@ -39,6 +39,7 @@ INSTALLED_APPS = [
     "django.contrib.staticfiles",
     "registration",
     "djstripe",
+    "crispy_forms",
 ]
 
 AUTH_USER_MODEL = "registration.CustomUser"
@@ -80,7 +81,7 @@ WSGI_APPLICATION = "user_subscription.wsgi.application"
 DATABASES = {
     "default": {
         "ENGINE": "django.db.backends.mysql",
-        "NAME": "registered_users",
+        "NAME": "registered_stripeusers",
         "USER": "root",
         "PASSWORD": "",
         "HOST": "127.0.0.1",  # Or an IP Address that your DB is hosted on
@@ -127,7 +128,9 @@ USE_TZ = True
 
 STATIC_URL = "/static/"
 
-LOGIN_REDIRECT_URL = "profile/"
+CRISPY_TEMPLATE_PACK = "bootstrap4"
+
+LOGIN_REDIRECT_URL = "/accounts/login/addcard/"
 
 env = environ.Env()
 environ.Env.read_env()

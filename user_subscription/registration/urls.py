@@ -8,19 +8,19 @@ urlpatterns = [
     path(
         "accounts/register/",
         RegistrationView.as_view(
-            form_class=CustomUserForm, success_url="/accounts/login/profile/"
+            form_class=CustomUserForm, success_url="/accounts/login/addcard/"
         ),
         name="django_registration_register",
     ),
     path("accounts/", include("django_registration.backends.one_step.urls")),
-    path("accounts/", include("django.contrib.auth.urls")),
+    path("accounts/", include("django.contrib.auth.urls"), name="login"),
     path(
-        "accounts/login/profile/",
+        "accounts/login/addcard/",
         registration_views.ProfilePage.as_view(),
         name="profile",
     ),
     path(
-        "accounts/login/profile/loggedout/",
+        "accounts/login/addcard/logout/",
         registration_views.LogoutView.as_view(),
         name="logout",
     ),
@@ -29,7 +29,9 @@ urlpatterns = [
         registration_views.UserSubscriptionPlan.as_view(),
         name="mysubscriptionplan",
     ),
-    path("create-sub", registration_views.CreateSub.as_view(), name="createsub"),
+    path(
+        "create-sub", registration_views.CreateSubscription.as_view(), name="createsub"
+    ),
     path("complete", registration_views.Complete.as_view(), name="complete"),
-    path("cancel", registration_views.Cancel.as_view(), name="cancel"),
+    path("cancel", registration_views.CancelSubscription.as_view(), name="cancel"),
 ]
