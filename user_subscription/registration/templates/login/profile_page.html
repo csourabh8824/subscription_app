@@ -163,7 +163,6 @@
                             </form>
                         </div>
                     </div>
-
                 </div>
             </div>
         </div>
@@ -172,10 +171,7 @@
 
 
     <script>
-       
-
         stripeElements();
-
         function stripeElements() {
             stripe = Stripe("{{publishable_key}}");
 
@@ -300,29 +296,6 @@
                 displayError.textContent = '';
             }
         }
-        {% comment %} function planSelect(name, price, priceId) {
-            var inputs = document.getElementsByTagName('input');
-            console.log(inputs.length)
-            for(var i = 0; i<inputs.length; i++){
-                inputs[i].checked = false;
-                if(inputs[i].name== name){
-                    inputs[i].checked = true;
-                }
-            } 
-
-            var n = document.getElementById('plan');
-            var p = document.getElementById('price');
-            var pid = document.getElementById('priceId');
-            n.innerHTML = name;
-            p.innerHTML = price;
-            pid.innerHTML = priceId;
-            document.getElementById("submit").disabled = false;
-        } {% endcomment %}
-
-
-
-
-
 
         window.onload = function(name,price,priceId) {
             var plan_name = document.getElementById("planname").textContent
