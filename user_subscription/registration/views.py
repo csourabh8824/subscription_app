@@ -22,7 +22,7 @@ class ProfilePage(View):
     """
 
     def get(self, request, *args, **kwargs):
-        print(111111111111111, request.user.active_subscription)
+
         if request.user.active_subscription:
             return render(request, "subscription/subscriptioncomplete.html")
 
@@ -37,7 +37,7 @@ class ProfilePage(View):
 @method_decorator(login_required, name="dispatch")
 class LogoutView(View):
     """
-    View to perform logout
+    View to perform logout action.
     """
 
     def get(self, request):
@@ -46,7 +46,7 @@ class LogoutView(View):
         return render(request, "logout/logout_page.html")
 
 
-# @method_decorator(login_required, name="dispatch")
+@method_decorator(login_required, name="dispatch")
 class CreateSubscription(View):
     """
     This view is used for customer creation and subscription.
@@ -101,6 +101,7 @@ class CreateSubscription(View):
             return HttpResponse("request method not allowed")
 
 
+@method_decorator(login_required, name="dispatch")
 class Complete(View):
     """
     This view render the template if subscription get completed.
@@ -122,9 +123,10 @@ class UserSubscriptionPlan(View):
         return render(request, "subscription/mysubscriptionplan.html")
 
 
+@method_decorator(login_required, name="dispatch")
 class CancelSubscription(View):
     """
-    this view render the template if subscription get cancelled.
+    this view is used for cancelling customer subscription.
     """
 
     def get(self, request):
